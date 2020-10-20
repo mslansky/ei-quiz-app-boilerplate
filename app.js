@@ -1,65 +1,59 @@
 const store = {
-    "questions": [{
-            "question": "Which fruit is actually a berry?",
-            "answers": [
-                "Banana",
-                "Apple",
-                "Pineapple",
-                "Kiwi"
+    questions: [{
+            question: 'Which fruit is actually a berry?',
+            answers: [
+                'Banana',
+                'Apple',
+                'Pineapple',
+                'Kiwi'
             ],
-            "correctAnswer": "Banana"
+            correctAnswer: 'Banana'
         },
         {
-            "question": "Which fruit is made up on a bunch of smaller aggregate fruits?",
-            "answers": [
-                "Watermelon",
-                "Raspberry",
-                "Blueberry",
-                "Cantaloupe"
+            question: 'Which fruit is made up on a bunch of smaller aggregate fruits?',
+            answers: [
+                'Watermelon',
+                'Raspberry',
+                'Blueberry',
+                'Cantaloupe'
             ],
-            "correctAnswer": "Raspberry"
+            correctAnswer: 'Raspberry'
         },
         {
-            "question": "Which fruit is related to roses?",
-            "answers": [
-                "Blueberries",
-                "Plum",
-                "Watermelon",
-                "Peaches"
+            question: 'Which fruit is related to roses?',
+            answers: [
+                'Blueberries',
+                'Plum',
+                'Watermelon',
+                'Peaches'
             ],
-            "correctAnswer": "Peaches"
+            correctAnswer: 'Peaches'
         },
         {
-            "question": "Which fruit was sacred in ancient Egypt?",
-            "answers": [
-                "Honeydew Melon",
-                "Pomegranate",
-                "Kiwis",
-                "Pears"
+            question: 'Which fruit was sacred in ancient Egypt?',
+            answers: [
+                'Honeydew Melon',
+                'Pomegranate',
+                'Kiwis',
+                'Pears'
             ],
-            "correctAnswer": "Honeydew Melon"
+            correctAnswer: 'Honeydew Melon'
         },
         {
-            "question": "Which fruit has air bubbles inside them that allow them to bounce and float?",
-            "answers": [
-                "Blackberries",
-                "Elderberries",
-                "Strawberries",
-                "Cranberries"
+            question: 'Which fruit has air bubbles inside them that allow them to bounce and float?',
+            answers: [
+                'Blackberries',
+                'Elderberries',
+                'Strawberries',
+                'Cranberries'
             ],
-            "correctAnswer": "Cranberries"
-        }
+            correctAnswer: 'Cranberries'
+        },
     ],
-    "quizStarted": false,
-    "questionNumber": 0,
-    "score": 0
+    quizStarted: false,
+    questionNumber: 0,
+    score: 0
 };
-
-
-
-
-
-
 
 
 
@@ -157,4 +151,31 @@ function main() {
     handleAnswerSubmit();
 
 
+}
+
+
+
+function questionPage() {
+    let question = store.questions[store.questionNumber];
+    console.log(question);
+    let questionPage = `
+<div class="card">
+  <h2>${question.question}</h2>
+ <form>
+      <label> ${question.answers[0]}</label>
+      <input type="radio" name="answer" value="${question.answers[0]}">
+      <br>
+      <label> ${question.answers[1]}</label>
+      <input type="radio" name="answer" value="${question.answers[1]}">
+      <br>
+      <label> ${question.answers[2]}</label>
+      <input type="radio" name="answer" value="${question.answers[2]}">
+      <br>
+      <label> ${question.answers[3]}</label>
+      <input type="radio" name="answer" value="${question.answers[3]}">
+      <br>
+      <button type="submit">Submit your answer</button>
+  </form>
+</div>`;
+    return questionPage;
 }

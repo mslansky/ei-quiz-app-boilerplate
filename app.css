@@ -4,3 +4,10 @@
     margin: 5px;
     padding: 5px:
 }
+
+#startPageFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
