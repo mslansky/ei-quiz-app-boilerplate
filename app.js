@@ -1,5 +1,59 @@
-const store = { question: 'Which fruit is actually a berry?', answers: ['Banana', 'Apple', 'Pineapple', 'Kiwi'], correctAnswer: 'Banana' },
-    { question: 'Which fruit is made up on a bunch of smaller aggregate fruits?', answers: ['Watermelon', 'Raspberry', 'Blueberry', 'Cantaloupe'], correctAnswer: 'Raspberry' }, ///////////////// { question: 'Which fruit is related to roses?', answers: [ 'Blueberries', 'Plum', 'Watermelon', 'Peaches' ], correctAnswer: 'Peaches' }, { question: 'Which fruit was sacred in ancient Egypt?', answers: [ 'Honeydew Melon', 'Pomegranate', 'Kiwis', 'Pears' ], correctAnswer: 'Honeydew Melon' }, { question: 'Which fruit has air bubbles inside them that allow them to bounce and float?', answers: [ 'Blackberries', 'Elderberries', 'Strawberries', 'Cranberries' ], correctAnswer: 'Cranberries' }, ], quizStarted: false, questionNumber: 0, score: 0 };
+const store = {
+    "questions": [{
+            "question": "Which fruit is actually a berry?",
+            "answers": [
+                "Banana",
+                "Apple",
+                "Pineapple",
+                "Kiwi"
+            ],
+            "correctAnswer": "Banana"
+        },
+        {
+            "question": "Which fruit is made up on a bunch of smaller aggregate fruits?",
+            "answers": [
+                "Watermelon",
+                "Raspberry",
+                "Blueberry",
+                "Cantaloupe"
+            ],
+            "correctAnswer": "Raspberry"
+        },
+        {
+            "question": "Which fruit is related to roses?",
+            "answers": [
+                "Blueberries",
+                "Plum",
+                "Watermelon",
+                "Peaches"
+            ],
+            "correctAnswer": "Peaches"
+        },
+        {
+            "question": "Which fruit was sacred in ancient Egypt?",
+            "answers": [
+                "Honeydew Melon",
+                "Pomegranate",
+                "Kiwis",
+                "Pears"
+            ],
+            "correctAnswer": "Honeydew Melon"
+        },
+        {
+            "question": "Which fruit has air bubbles inside them that allow them to bounce and float?",
+            "answers": [
+                "Blackberries",
+                "Elderberries",
+                "Strawberries",
+                "Cranberries"
+            ],
+            "correctAnswer": "Cranberries"
+        }
+    ],
+    "quizStarted": false,
+    "questionNumber": 0,
+    "score": 0
+};
 
 
 
@@ -13,42 +67,43 @@ const store = { question: 'Which fruit is actually a berry?', answers: ['Banana'
 
 
 
-    /**
-     * 
-     * Technical requirements:
-     * 
-     * Your app should include a render() function, that regenerates the view each time the store is updated. 
-     * See your course material and access support for more details.
-     *
-     * NO additional HTML elements should be added to the index.html file.
-     *
-     * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
-     *
-     * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
-     * 
-     */
 
-    /********** TEMPLATE GENERATION FUNCTIONS **********/
+/**
+ * 
+ * Technical requirements:
+ * 
+ * Your app should include a render() function, that regenerates the view each time the store is updated. 
+ * See your course material and access support for more details.
+ *
+ * NO additional HTML elements should be added to the index.html file.
+ *
+ * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
+ *
+ * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
+ * 
+ */
 
-    // These functions return HTML templates
+/********** TEMPLATE GENERATION FUNCTIONS **********/
 
-    /********** RENDER FUNCTION(S) **********/
+// These functions return HTML templates
 
-    // This function conditionally replaces the contents of the <main> tag based on the state of the store
+/********** RENDER FUNCTION(S) **********/
 
-    /********** EVENT HANDLER FUNCTIONS **********/
+// This function conditionally replaces the contents of the <main> tag based on the state of the store
 
-    // These functions handle events (submit, click, etc)
+/********** EVENT HANDLER FUNCTIONS **********/
+
+// These functions handle events (submit, click, etc)
 
 
-    function startPage() {
-        let startPage = `
+function startPage() {
+    let startPage = `
   <div class="card>
   <h2>Welcome to my quiz</h2>
   <p> It's going to be great</p>
   </div>`;
-        return startPage();
-    }
+    return startPage();
+}
 
 function render() {
     console.log
