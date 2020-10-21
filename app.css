@@ -9,12 +9,13 @@
 .startPageFruit {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .fruitPic{
   flex: 1;
-  margin-bottom: 10%;
+  margin: auto;
+  
 }
 
 img{
@@ -26,33 +27,32 @@ img{
 
 h1{
   text-align: center;
+  font-family: 'Sen', sans-serif;
 }
  
 /* start button flex box*/
 .start-button-center{
   display: flex;
   justify-content: center;
-
+  align-items: center;
+  height: 70%;
+  width: 50%;
+  padding-left: 25%;
+  padding-right:0;
 }
 
 .start-button{
   justify-content: center;
   flex:1; 
-  align-items: center;
-  height: 50px;
-  width: 50px;
   border:none;
   background-color:#FFF05A ;
-  margin: auto;
-  padding-left: 50px;
-  padding-right: 50px;
-  border: black;
+  border: black solid 2px;
 }
 /* start button flex box*/
 
 
 .startPage{
-background-color:#FFD25A ;
+background-color: #70EE9C;
 }
 
 /* css from johnathan */
