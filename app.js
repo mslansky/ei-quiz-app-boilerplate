@@ -20,15 +20,15 @@ const store = {
             correctAnswer: 'Raspberry'
         },
         {
-            question: 'Which fruit is related to roses?',
-            answers: [
-                'Blueberries',
-                'Plum',
-                'Watermelon',
-                'Peaches'
-            ],
-            correctAnswer: 'Peaches'
-        },
+          question: 'Which fruit is related to roses?',
+          answers: [
+              'Blueberries',
+              'Plum',
+              'Watermelon',
+              'Peaches'
+          ],
+          correctAnswer: 'Peaches'
+      },
         {
             question: 'Which fruit was sacred in ancient Egypt?',
             answers: [
@@ -89,33 +89,49 @@ const store = {
 
 // These functions handle events (submit, click, etc)
 
-function startPage() {
+//think of this function as a GENERATE page
+//this function awaits the end user to click start, then activates the quiz
+function generateStartPage() {
   let startPage = `
-<div class="card>
-<h2>Welcome to my quiz</h2>
-<p> It's going to be great</p>
+  <div class="startPage">
+  <h1>Welcome to the Frooty Fruit Quiz!</h1>
+
+  <section class="startPageFlex">
+      <div class="startPageFruit">
+          <div class="fruitPic">
+              <img src="https://images.unsplash.com/photo-1589606743932-747c74e7330e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Image of Pineapple"></div>
+          <div class="fruitPic">
+              <img src="https://images.unsplash.com/photo-1584209742773-f7b461564449?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80" alt="Image of Kiwi"></div>
+          <div class="fruitPic">
+              <img src="https://images.unsplash.com/photo-1580157508103-2a4e9fe8ed29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80" alt="Image of Pomegranate"></div>
+      </div>
+  </section>
+
+  <div class="start-button-center">
+  <button class="start-button">
+  <span class="button-label">Start!</span>
+  </button>
+  </div>
 </div>`;
-  return startPage();
+  return startPage;
 }
 
-
-function render() {
-  console.log
-  if (store.quizStarted === false) {
-      $('main').html(startPage);
-  } else if (store.quizStarted) {
-      $('main').html(questionPage());
-      store.questionNumber++;
-      render();
-  }
+//this function renders the start page html from above
+function renderStartPage() { 
+  $('#container').html(generateStartPage());
 }
 
-
-function questionPage() {
+//this function generates our questions calling upon the question array parameters above
+//we will have to erase our correctCount in our end
+function generateQuestionPage() {
   let question = store.questions[store.questionNumber];
   console.log(question);
+  let questionCount= (store.questionNumber)
+  questionCount ++;
   let questionPage = `
 <div class="card">
+<p>Score:${store.score}</p>
+<p>Question:${questionCount}/${store.questions.length}</p>
   <h2>${question.question}</h2>
  <form>
       <label> ${question.answers[0]}</label>
@@ -136,26 +152,123 @@ function questionPage() {
   return questionPage;
 }
 
-
-function handleStartQuiz() {
-  $('main').on('click', '#start', function() {
-      store.quizStarted = true;
-      render()
-  })
+//this render question function uses the above generate function to output it to html
+//this is so the questions are physcially displayed 
+function renderQuestionPage(){
+  $('.failed').remove();
+  console.log(store.questionNumber);
+  let questionHTML = generateQuestionPage();
+  // insert that HTML into the DOM
+  $('#container').html(questionHTML);
 }
 
 
+//grab the value of the question answer and compare that to the defined answer
+//if it is right move on to the next question 
+//if it is wrong generate feedback and render feedback sequence
+function generateFeedback(){
+  let failedAnswer= `<div class="failed">
+  <p>So close! The right answer is actually ${store.questions[store.questionNumber].correctAnswer} </p>
+<br/><button class="next-question">Next question</button></div>`;
+return failedAnswer;
+}
+
+
+//after you render the feedback you also need to display a button that advances user on to next question
+function renderFeedback(){
+let feedback= generateFeedback();
+$('#failed').html(feedback);
+$('button[type=submit]').remove();
+handleNextPage();
+}
+
+
+
+// this function will generate the end page html and play again button
+//it also needs to display the final count of correct answers
+function generateEndPage(){
+  $('.failed').remove();
+  
+}
+
+//this function will take care of displaying the end page html and button
+function renderEndPage(){
+let endPage= generateEndPage();
+$('#container').html(endPage);
+//handleStartAgain button here
+}
+
+
+
+
+
+
+//BELOW ARE THE HANDLE FUNCTIONS!!
+//javascript is just waiting until a user clicks a button
+//handleStartQuiz just renders the start page and starts the quiz
+function handleStartQuiz() {
+  $('.start-button').on('click',function() {
+      store.quizStarted = true;
+      renderQuestionPage();
+      console.log("Quiz Started!");
+  })
+}
+
+//the handle function allows for users to submit each question
 function handleAnswerSubmit() {
+  //here we put the score counter
+  //let scoreCount = 0
+  $('#container').on("submit", function(){
+    let selectedAnswer = document.querySelector('input[name=answer]:checked').value;
+    console.log(selectedAnswer, store.questionNumber);
+    if (store.questions[store.questionNumber].correctAnswer === selectedAnswer){
+      store.score ++;
+    }
+  })
   $("main").on("submit", "form", function(evt) {
       evt.preventDefault();
-      store.questionNumber++;
-      render();
+      console.log(store.questionNumber);
+      if(store.questionNumber >= store.questions.length){
+        store.questionNumber++;
+        renderEndPage();
+      }else{
+        let selectedAnswer = document.querySelector('input[name=answer]:checked').value;
+        console.log(selectedAnswer);
+        if(selectedAnswer !== store.questions[store.questionNumber].correctAnswer){
+          renderFeedback();
+        } else {
+          store.questionNumber++;
+          renderQuestionPage();
+        }
+      }
   })
 }
 
+//this will generate questionPage and render questionPage
+//it will also advance store.questionNumber
+function handleNextPage(){
+  $(".next-question").on("click", function(evt) {
+    store.questionNumber++;
+    renderQuestionPage();
+  });
+}
 
+//the handle function will allow users to play again by pressing the play again button
+function handlePlayAgain(){
+
+}
+
+
+//main function is going to do the modifications on our DOM
+//first call main
+//then it will render functions which modify the DOM
+//then it will handle our functions which add our event listeners (also modifying the DOM)
+//
 function main() {
-  render();
+  console.log("hi");
+  renderStartPage();
   handleStartQuiz();
   handleAnswerSubmit();
+  //handlePlayAgain();
 }
+main();
