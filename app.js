@@ -89,76 +89,32 @@ const store = {
 
 // These functions handle events (submit, click, etc)
 
-
 function startPage() {
-    let startPage = `
-  <div class="card>
-  <h2>Welcome to my quiz</h2>
-  <p> It's going to be great</p>
-  </div>`;
-    return startPage();
+  let startPage = `
+<div class="card>
+<h2>Welcome to my quiz</h2>
+<p> It's going to be great</p>
+</div>`;
+  return startPage();
 }
+
 
 function render() {
-    console.log
-    if (store.quizStarted === false) {
-        $('main').html(startPage);
-    } else if (store.quizStarted) {
-        $('main').html(questionPage());
-        store.questionNumber++;
-        render();
-
-    }
+  console.log
+  if (store.quizStarted === false) {
+      $('main').html(startPage);
+  } else if (store.quizStarted) {
+      $('main').html(questionPage());
+      store.questionNumber++;
+      render();
+  }
 }
-
-function questionPage() {
-    let question = store.questions[store.questionNumber];
-    console.log(question);
-    let startPage = `
-  <div class="card>
-  <h2>${question.question}</h2>
-  <form>
-    <label> ${question.answers[0]} </label>
-    <input type = "radio" name="answer" value="${question.answers[0]}">
-    <label> ${question.answers[0]} </label>
-    <input type = "radio" name="answer" value="${question.answers[1]}">
-    <button type="submit>Submit your Answer</button>
-    </form>
-  </div>`;
-    return questionPage();
-}
-
-function handleStartQuiz() {
-    $('main').on('click', '#start', function() {
-        store.quizStarted = true;
-        render()
-    })
-}
-
-function handleAnswerSubmit() {
-    $("main").on("submit", "form", function(evt) {
-        evt.preventDefault();
-        store.questionNumber++;
-        render();
-
-    })
-}
-
-
-function main() {
-    render();
-    handleStartQuiz();
-    handleAnswerSubmit();
-
-
-}
-
 
 
 function questionPage() {
-    let question = store.questions[store.questionNumber];
-    console.log(question);
-    let questionPage = `
+  let question = store.questions[store.questionNumber];
+  console.log(question);
+  let questionPage = `
 <div class="card">
   <h2>${question.question}</h2>
  <form>
@@ -177,5 +133,29 @@ function questionPage() {
       <button type="submit">Submit your answer</button>
   </form>
 </div>`;
-    return questionPage;
+  return questionPage;
+}
+
+
+function handleStartQuiz() {
+  $('main').on('click', '#start', function() {
+      store.quizStarted = true;
+      render()
+  })
+}
+
+
+function handleAnswerSubmit() {
+  $("main").on("submit", "form", function(evt) {
+      evt.preventDefault();
+      store.questionNumber++;
+      render();
+  })
+}
+
+
+function main() {
+  render();
+  handleStartQuiz();
+  handleAnswerSubmit();
 }

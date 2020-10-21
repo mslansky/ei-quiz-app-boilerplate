@@ -54,3 +54,25 @@ h1{
 .startPage{
 background-color:#FFD25A ;
 }
+
+/* css from johnathan */
+
+form label,
+form p {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: gray;
+    font-family: arial;
+}
+form input[type="radio"] {
+    font-size: 16px;
+}
+form input[type="radio"]+label {
+    display: inline;
+    color: #000;
+    font-size: 16px;
+}
+form h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
