@@ -5,9 +5,52 @@
     padding: 5px:
 }
 
-#startPageFlex {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: auto;
+/* fruit image flexbox */
+.startPageFruit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fruitPic{
+  flex: 1;
+  margin-bottom: 10%;
+}
+
+img{
+  width: 75%;
+  height: 100%;
+}
+/* End of fruit image flexbox */
+
+
+h1{
+  text-align: center;
+}
+ 
+/* start button flex box*/
+.start-button-center{
+  display: flex;
+  justify-content: center;
+
+}
+
+.start-button{
+  justify-content: center;
+  flex:1; 
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border:none;
+  background-color:#FFF05A ;
+  margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  border: black;
+}
+/* start button flex box*/
+
+
+.startPage{
+background-color:#FFD25A ;
 }
