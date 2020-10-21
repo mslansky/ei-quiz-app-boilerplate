@@ -187,21 +187,23 @@ handleNextPage();
 // this function will generate the end page html and play again button
 //it also needs to display the final count of correct answers
 function generateEndPage(){
-  $('.failed').remove();
-  
+  let endPage = `<div class="endPage">
+  <h1>Great Job!</h1>
+  <p>Score:${store.score}</p>
+  <button class="play-again-button">
+    <span class="button-label">Play Again!</span>
+  </button>
+  </div>`
+  return endPage;
 }
 
 //this function will take care of displaying the end page html and button
 function renderEndPage(){
-let endPage= generateEndPage();
-$('#container').html(endPage);
-//handleStartAgain button here
+  $('.failed').remove();
+  let endPage = generateEndPage();
+  $('#container').html(endPage);
+  handleEndPage();
 }
-
-
-
-
-
 
 //BELOW ARE THE HANDLE FUNCTIONS!!
 //javascript is just waiting until a user clicks a button
@@ -228,7 +230,7 @@ function handleAnswerSubmit() {
   $("main").on("submit", "form", function(evt) {
       evt.preventDefault();
       console.log(store.questionNumber);
-      if(store.questionNumber >= store.questions.length){
+      if((store.questionNumber + 1) >= store.questions.length){
         store.questionNumber++;
         renderEndPage();
       }else{
@@ -254,8 +256,14 @@ function handleNextPage(){
 }
 
 //the handle function will allow users to play again by pressing the play again button
-function handlePlayAgain(){
-
+function handleEndPage(){
+  $(".play-again-button").on("click", function(evt){
+    store.questionNumber = 0;
+    store.score = 0;
+    store.quizStarted = false;
+    renderStartPage();
+    handleStartQuiz();
+  });
 }
 
 
@@ -269,6 +277,5 @@ function main() {
   renderStartPage();
   handleStartQuiz();
   handleAnswerSubmit();
-  //handlePlayAgain();
 }
 main();
